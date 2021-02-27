@@ -1,0 +1,83 @@
+mysql>  CREATE TABLE employe(
+    ->  empno int primary key,
+    -> ename varchar(50) NOT NULL,
+    -> job varchar(50) NOT NULL,
+    ->  hiredate date NULL,
+    -> mgr int  NULL,
+    -> salary decimal(10,2) NULL,
+    -> deptno int NOT NULL);
+Query OK, 0 rows affected (1.92 sec)
+
+mysql> desc employe;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| empno    | int           | NO   | PRI | NULL    |       |
+| ename    | varchar(50)   | NO   |     | NULL    |       |
+| job      | varchar(50)   | NO   |     | NULL    |       |
+| hiredate | date          | YES  |     | NULL    |       |
+| mgr      | int           | YES  |     | NULL    |       |
+| salary   | decimal(10,2) | YES  |     | NULL    |       |
+| deptno   | int           | NO   |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+7 rows in set (0.14 sec
+
+
+mysql> INSERT INTO employe(empno,ename,job,hiredate,mgr,salary,deptno) VALUE(977,"CR","analyst","2019-05-14",255,38877,59);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO employe(empno,ename,job,hiredate,mgr,salary,deptno) VALUE(988,"rko","sales","2020-05-14",295,38807,54);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO employe(empno,ename,job,hiredate,mgr,salary,deptno) VALUE(887,"ron","manager","2020-09-9",885,34507,57);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO employe(empno,ename,job,hiredate,mgr,salary,deptno) VALUE(888,"rock","sales","2020-05-9",285,38507,51);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO employe(empno,ename,job,hiredate,mgr,salary,deptno) VALUE(588,"rocky","sales","2020-02-9",288,28507,40);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> INSERT INTO employe(empno,ename,job,hiredate,mgr,salary,deptno) VALUE(137,"xavi",devolper,"2020-03-19",1225,38815,45);
+ERROR 1054 (42S22): Unknown column 'devolper' in 'field list'
+mysql> INSERT INTO employe(empno,ename,job,hiredate,mgr,salary,deptno) VALUE(137,"xavi","devolper","2020-03-19",1225,38815,45);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> INSERT INTO employe(empno,ename,job,hiredate,mgr,salary,deptno) VALUE(138,"alves","devolper","2020-03-26",225,38785,25);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select * from employe;
++-------+-------+----------+------------+------+----------+--------+
+| empno | ename | job      | hiredate   | mgr  | salary   | deptno |
++-------+-------+----------+------------+------+----------+--------+
+|   137 | xavi  | devolper | 2020-03-19 | 1225 | 38815.00 |     45 |
+|   138 | alves | devolper | 2020-03-26 |  225 | 38785.00 |     25 |
+|   556 | frank | clerk    | 2019-02-09 |  488 | 28507.00 |     50 |
+|   576 | joe   | clerk    | 2019-02-02 |  188 | 28588.00 |     50 |
+|   588 | rocky | sales    | 2020-02-09 |  288 | 28507.00 |     40 |
+|   877 | leo   | manager  | 2018-09-09 |  895 | 34887.00 |     77 |
+|   887 | ron   | manager  | 2020-09-09 |  885 | 34507.00 |     57 |
+|   888 | rock  | sales    | 2020-05-09 |  285 | 38507.00 |     51 |
+|   937 | pique | analyst  | 2018-05-19 |  155 | 38817.00 |     45 |
+|   977 | CR    | analyst  | 2019-05-14 |  255 | 38877.00 |     59 |
+|   988 | rko   | sales    | 2020-05-14 |  295 | 38807.00 |     54 |
++-------+-------+----------+------------+------+----------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select MAX(Salary) from employe;
++-------------+
+| MAX(Salary) |
++-------------+
+|    38877.00 |
++-------------+
+1 row in set (0.05 sec)
+
+mysql> select * from employe where job='sales' AND Salary>25000;
++-------+-------+-------+------------+------+----------+--------+
+| empno | ename | job   | hiredate   | mgr  | salary   | deptno |
++-------+-------+-------+------------+------+----------+--------+
+|   588 | rocky | sales | 2020-02-09 |  288 | 28507.00 |     40 |
+|   888 | rock  | sales | 2020-05-09 |  285 | 38507.00 |     51 |
+|   988 | rko   | sales | 2020-05-14 |  295 | 38807.00 |     54 |
++-------+-------+-------+------------+------+----------+--------+
+3 rows in set (0.00 sec)
